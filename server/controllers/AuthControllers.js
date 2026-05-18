@@ -162,18 +162,18 @@ module.exports.register = async (req, res) => {
     //   maxAge: maxAge * 1000,
     // })
 
-    res.cookie("jwt", token, {
-  httpOnly: false,
-  maxAge: maxAge * 1000,
-  sameSite: "lax",
-})
-
-// res.cookie("jwt", token, {
-//   httpOnly: true,
-//   secure: true,
-//   sameSite: "none",
+//     res.cookie("jwt", token, {
+//   httpOnly: false,
 //   maxAge: maxAge * 1000,
+//   sameSite: "lax",
 // })
+
+res.cookie("jwt", token, {
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+  maxAge: maxAge * 1000,
+})
 
     return res.status(201).json({
       created: true,
@@ -239,19 +239,19 @@ module.exports.login = async (req, res) => {
     //   maxAge: maxAge * 1000,
     // })
 
-    res.cookie("jwt", token, {
-  httpOnly: false,
-  maxAge: maxAge * 1000,
-  sameSite: "lax",
-})
-
-
-// res.cookie("jwt", token, {
-//   httpOnly: true,
-//   secure: true,
-//   sameSite: "none",
+//     res.cookie("jwt", token, {
+//   httpOnly: false,
 //   maxAge: maxAge * 1000,
+//   sameSite: "lax",
 // })
+
+
+res.cookie("jwt", token, {
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+  maxAge: maxAge * 1000,
+})
 
     return res.status(200).json({
       status: true,

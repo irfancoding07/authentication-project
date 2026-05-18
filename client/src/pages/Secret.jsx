@@ -208,7 +208,7 @@
 
 
 
-import React, { useEffect } from "react";
+ import React, { useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -238,7 +238,7 @@ export default function Secret() {
         try {
 
           const { data } = await axios.get(
-            "http://localhost:4000",
+            "https://authentication-project-1-6e9r.onrender.com",
             {
               withCredentials: true,
             }
@@ -254,7 +254,7 @@ export default function Secret() {
 
           } else {
 
-            toast(`Welcome User`, {
+            toast(`Welcome User 🔐`, {
               position: "top-right",
             });
           }
