@@ -148,63 +148,37 @@
 
 
 
-require("dotenv").config()
-const express = require("express")
+require("dotenv").config();
 
-const cors = require("cors")
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
-const mongoose = require("mongoose")
+const authRoutes = require("./Routes/AuthRoutes");
 
-const cookieParser = require("cookie-parser")
-
-
-const authRoutes = require("./Routes/AuthRoutes")
-
-const app = express()
-
-// Middleware
-
-// app.use(cors({
-//   origin: ["http://localhost:3000"],
-//   methods: ["GET", "POST"],
-//   credentials: true,
-// }))
-
-// app.use(cors({
-//   origin: ["http://localhost:3000", "http://localhost:5173"],
-//   credentials: true,
-// }))
+const app = express();
 
 app.use(cors({
-  origin: [
-    "http://localhost:3000",
-    "http://localhost:5173",
-    "https://authentication-project-neon.vercel.app"
-  ],
+  origin: "https://authentication-project-uu62.vercel.app",
+  methods: ["GET", "POST"],
   credentials: true,
-}))
+}));
 
+app.use(cookieParser());
 
-app.use(cookieParser())
+app.use(express.json());
 
-app.use(express.json())
-
-// Routes
-
-app.use("/", authRoutes)
-
-// Database Connection
+app.use("/", authRoutes);
 
 mongoose.connect(process.env.MONGO_URL)
 .then(() => {
-  console.log("DB Connection Successful")
+  console.log("DB Connection Successful");
 })
 .catch((err) => {
-  console.log(err.message)
-})
-
-// Server
+  console.log(err.message);
+});
 
 app.listen(process.env.PORT, () => {
-  console.log(`Server Started on port ${process.env.PORT}`)
-})
+  console.log(`Server Started on port ${process.env.PORT}`);
+});
